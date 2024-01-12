@@ -1,8 +1,8 @@
-import Queue from 'bull';
+const Queue = require('bull');
 
 let  redisconf = {}
 
-export function setRedisConfig(host,port,password){
+exports.setRedisConfig = function(host,port,password){
     const newhost = host || "127.0.0.1"
     const newport = port || 6379
     const newpassword = password || ""
@@ -16,11 +16,11 @@ export function setRedisConfig(host,port,password){
     }
 }
 
-export function printMsg() {
+exports.printMsg = function() {
   console.log("This is a message from the demo package");
 }
 
-export async function sendQueue(inputku,queuename){
+exports.sendQueue = async function(inputku,queuename){
     try{
         qname = queuename || "default"
         const myFirstQueue = new Queue(qname,redisconf);
